@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 const Alexa     = require('alexa-sdk');
+const Pet       = require('./modals/pet')
 
 exports.handler = function(event, context, callback){
     const alexa = Alexa.handler(event,context);
@@ -13,6 +14,12 @@ const handlers = {
     },
     'Test':function(){
         this.emit(':tell','Test complete');
+    },
+    'PetStatusIntent':function(){
+        Pet.get_health(this);
+    },
+    'InteractIntent': function(){
+        Pet.interact(this);
     },
     'AMAZON.StopIntent': function() {
         // State Automatically Saved with :tell
