@@ -42,7 +42,7 @@ const exerciseGate = function(fitness){
 const healthGate = function(hp){
     switch(true){
         case (hp <= 10): 
-            return `H.P levels are critical. I'm about to die. <emphasis level = 'strong'> Please </emphasis> Do something about it!`;
+            return `HP levels are critical. I'm about to die. <emphasis level="strong"> Please </emphasis> Do something about it!`;
         case (hp <= 50):
             return `My health is at ${hp}, please help me. Feed, or play with me!`
         case (hp <= 89):
