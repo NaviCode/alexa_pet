@@ -4,12 +4,14 @@ const DocClient = new AWS.DynamoDB.DocumentClient();
 const table     = "Pets";
 
 exports.get_health = function(alexa){
-    alexa.emit(":tell","I am not dead just yet.");
+    let hp = Math.floor(100 * Math.random());
+    console.log("HP FOR INSTANCE: ",hp);
+    alexa.emit(":tell", healthGate(hp));
 };
 
 exports.interact = function(alexa){
     let hunger = Math.floor(101 * Math.random());
-    alexa.emit(":tell", hungerGate(hunger));
+    alexa.emit(":tell",hungerGate(hunger));
 };
 
 const exercise = function(){
@@ -17,16 +19,35 @@ const exercise = function(){
 };
 
 const hungerGate = function(hunger){
-    switch (hunger) {
-        case hunger <= 10:
+    switch (true) {
+        case (hunger <= 10):
             return `Oh god. I'm about to die, please feed me!`
-        case hunger <=50:
+        case (hunger <=50):
             return `I'm feeling pretty weak, can you please feed me?`;
-        case hunger <=80:
+        case (hunger <=80):
             return `I'm content! Thank you for keeping me well fed!`
-        case hunger <=100:
+        case (hunger <=100):
             return `I. Am. So. Full. I'm so happy, thank you!`
-        case hunger > 101:
+        case (hunger > 101):
             return `Please, no more! I've had enough! No more food!`
     }
 };
+
+const exerciseGate = function(fitness){
+    switch(true){
+        
+    }
+};
+
+const healthGate = function(hp){
+    switch(true){
+        case (hp <= 10): 
+            return `H.P levels are critical. I'm about to die. <emphasis level = 'strong'> Please </emphasis> Do something about it!`;
+        case (hp <= 50):
+            return `My health is at ${hp}, please help me. Feed, or play with me!`
+        case (hp <= 89):
+            return `I'm okay, but I could always eat or play! My hp is at ${hp}`
+        case(hp >= 90):
+            return `Wow! I'm doing fantastic. You're such a good care-taker! My hp is at ${hp}`
+    }
+}
