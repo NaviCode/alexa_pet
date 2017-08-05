@@ -8,8 +8,8 @@ exports.get_health = function(alexa){
 };
 
 exports.interact = function(alexa){
-    let res = exercise();
-    alexa.emit(":tell",res);
+    let hunger = Math.floor(101 * Math.random());
+    alexa.emit(":tell", hungerGate(hunger));
 };
 
 const exercise = function(){

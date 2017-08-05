@@ -12,9 +12,6 @@ const handlers = {
     'LaunchRequest': function() {
         this.emit(':ask', 'Welcome to Alexa Day care!');
     },
-    'Test':function(){
-        this.emit(':tell','Test complete');
-    },
     'PetStatusIntent':function(){
         Pet.get_health(this);
     },
