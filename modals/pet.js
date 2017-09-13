@@ -1,19 +1,19 @@
-/* Setting up variables for DB */
-const AWS       = require('aws-sdk');
-const DocClient = new AWS.DynamoDB.DocumentClient();
-const table     = "Pets";
-
+/*jshint esversion: 6 */
 exports.get_health = function(alexa){
     let hp = Math.floor(100 * Math.random());
     console.log("HP FOR INSTANCE: ",hp);
     alexa.emit(":tell", healthGate(hp));
 };
-
-exports.interact = function(alexa){
+exports.get_hunger = function(alexa){
     let hunger = Math.floor(101 * Math.random());
     alexa.emit(":tell",hungerGate(hunger));
 };
+exports.feed = function(alexa){
 
+};
+exports.exercise = function(alexa){
+
+};
 const exercise = function(){
     return `<emphasis level="strong">Finally.<break time='.5s'/></emphasis> We're finally going for a walk.`
 };
@@ -51,3 +51,6 @@ const healthGate = function(hp){
             return `Wow! I'm doing fantastic. You're such a good care-taker! My hp is at ${hp}`
     }
 }
+
+/* IDEA */
+/* Make it relevent to parents. Feed and exercise with the pet only when they complete chores. Make a parent portal */
