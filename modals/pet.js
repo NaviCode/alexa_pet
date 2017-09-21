@@ -1,4 +1,23 @@
 /*jshint esversion: 6 */
+request = require('request');
+exports.get_stats = function(alexa){
+    var options = { method: 'GET',
+    url: 'https://sleepy-beach-44231.herokuapp.com/api/v1/pets',
+    };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    body = JSON.parse(body);    
+    console.log("CHECK FOR BODY", body);
+    let petname = body[0].name;
+    let petHealth = body[0].health;
+    let fitness = body[0].fitness;
+    let hunger = body[0].hunger;
+    bark = `<audio src="https://s3.amazonaws.com/puppy.sounds/puppy_bark.mp3"/>`;
+    alexa.emit(":ask",`${bark}, hold on puppy, I was asked a question. Sorry about that. ${petname} is at ${petHealth} health, ${fitness} fitness, and ${hunger} hunger.`, `Remember you can always play or feed him! Or ask me for help!`);
+  });
+  
+};
 exports.get_health = function (alexa) {
     let hp = Math.floor(100 * Math.random());
     console.log("HP FOR INSTANCE: ", hp);
@@ -9,10 +28,8 @@ exports.get_hunger = function (alexa) {
     alexa.emit(":tell", hungerGate(hunger));
 };
 exports.feed = function (alexa) {
-
 };
 exports.exercise = function (alexa) {
-
 };
 exports.create = function (alexa, data, name, options) {
     var request = require("request");
@@ -20,7 +37,8 @@ exports.create = function (alexa, data, name, options) {
     request(options, function (error, response, body) {
         if (error) throw new Error(error);
         console.log("THE BODY IS HERE", body);
-        alexa.emit(`:ask`, `Meet your new puppy, ${name}! Say hello!`);
+        puppybark = `<audio src="https://s3.amazonaws.com/puppy.sounds/puppy_bark.mp3"/>`;
+        alexa.emit(`:ask`, `Meet your new puppy, ${name}! Say hello! ${puppybark} Say help, anytime you need any help!`, `Need some help? Say help!`);
     });
 
 };
